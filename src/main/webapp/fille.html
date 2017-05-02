@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body ng-app="springDemo" >
+<div class="container petro" ng-controller="AppCtrl" style="margin-right: 30%">
+  Пошук:  <input type ="text" ng-model="query">
+    <div class="panel-body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <table class="table table-striped table table-hover table-bordered">
+                        <thead style="background-color: #bce8f1;">
+                        <tr>
+                            <th><a href="" ng-click="sort('tittle')">Тема</a></th>
+                            <th><a href="" ng-click="sort('author')">Автор</a></th>
+                            <th><a href="" ng-click="sort('pages')">Сторінка</a></th>
+                            <th><a href="" ng-click="sort('year')">Рік Видання</a></th>
+                            <th><a href="" ng-click="sort('point')">№ Публікації</a></th>
+                            <th><a href="" ng-click="sort('words')">Ключові слова</a></th>
+                            <th><a href="" ng-click="sort('thema')">Тематика</a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in websites | filter:query | orderBy:sortField:reverse">
+                            <th><a href ={{item.link}} />{{item.tittle}}</a></th>
+                            <th>{{item.author}}</th>
+                            <th>{{item.pages}}</th>
+                            <th>{{item.year}}</th>
+                            <th>{{item.point}}</th>
+                            <th>{{item.words}}</th>
+                            <th>{{item.thema}}</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script type="text/javascript" src="js/head.js"></script>
+</body>
+</html>
