@@ -17,7 +17,7 @@ app.controller("AppCtrl",function ($scope,$http) {
         }
         else{
             $scope.sortField =field;
-            $scope.revers = true;
+            $scope.revers = false;
         }
     };
 });
