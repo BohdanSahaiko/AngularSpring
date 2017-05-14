@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <head>
     <title>Admin Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
@@ -11,25 +12,54 @@
 </head>
 
 <body>
-<div class="container">
-
+<div class="container" >
     <form th:action="@{/logout}" method="get">
         <button class="btn btn-md btn-danger btn-block" name="registration"
                 type="Submit">Logout</button>
     </form>
+    <form th:action="@{/admin/devs}" method="post" class="form-signin">
+        <h3 class="form-signin-heading">Сторінка Адміна</h3>
+        <br/>
 
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}"></span>
-            </div>
-            <div class="panel-body">
-                <img th:src="@{/images/beer.jpg}" class="img-responsive center-block" width="400" height="400" alt="Beer" />
-            </div>
-            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+        <input type="text" id="q" name="q"  th:placeholder="param.q"
+               class="form-control" /> <br/>
+
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color: #FF1C19;">Name or Password invalid, please verify</p>
         </div>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Пошук" type="Submit" th:text="Пошук"></button>
+    </form>
+    <div th:if="${not #lists.isEmpty(parrrtList) }" >
+        <table class="table-striped  table-hover table-bordered table" style="margin-right: 5%;"  >
+            <thead style="background-color: #a8e3f1;">
+            <tr>
+                <th>Тема</th>
+                <th>Автор</th>
+                <th>Сторінка</th>
+                <th>Рік Видання</th>
+                <th>№ Публікації</th>
+                <th>Ключові слова</th>
+                <th>Ключові слова</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="publication : ${parrrtList}">
+                <th th:text="${publication.tiitle}"></th>
+                <th th:text="${publication.author}"></th>
+                <th th:text="${publication.pages}"></th>
+                <th th:text="${publication.them}"></th>
+                <th th:text="${publication.link}"></th>
+                <th th:text="${publication.year}"></th>
+                <th th:text="${publication.keyss}"></th>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
+<script type="text/javascript" src="../static/js/angular.min.js"
+        th:src="@{/js/angular.min.js}"></script>
+<script type="text/javascript" src="../static/js/head.js"
+        th:src="@{/js/head.js}"></script>
 </body>
 </html>

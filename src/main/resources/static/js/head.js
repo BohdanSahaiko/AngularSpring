@@ -17,5 +17,12 @@ app.controller("AppCtrl",function ($scope,$http) {
             $scope.revers = false;
         }
     };
+    
+    app.controller("AppCtrleer",function ($scope) {
+        $scope.wee =[];
+        $http.get("http://localhost:8080/admin/devs").success(function (data) {
+            $scope.websites =data;
+        })
+    })
 });
 

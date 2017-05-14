@@ -18,9 +18,9 @@ import java.util.List;
 //http://nltu.edu.ua/nv/Archive/2016/26_5/index26_5.htm http://nltu.edu.ua/nv/Archive/2015/25_10/index25_10.htm "http://nltu.edu.ua/nv/Archive/2015/25_5/index25_5.htm" "http://nltu.edu.ua/nv/Archive/2015/25_3/index25_3.htm"
 public class Parser {
 
-    public static List<Parrrt> lister() throws IOException {
+    public static List<Parrrt> lister(String parser) throws IOException {
         PdfReader reader;
-        String link = "http://nltu.edu.ua/nv/Archive/2015/25_1/index25_1.htm";
+        String link = parser;
         String forPdf = link.substring(0, link.length() - 13);
         String[] parts = link.split("/");
         String year = parts[5];

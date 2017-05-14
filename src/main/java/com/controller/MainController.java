@@ -50,17 +50,15 @@ public class MainController {
     @RequestMapping(value="/admin/home", method = RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByName(auth.getName());
-        modelAndView.addObject("userName", "Welcome " + user.getName() + ")");
-        modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin/home");
         return modelAndView;
     }
-    @ResponseBody
-    @RequestMapping(value="/devs")
-    List<Parrrt> parrrtList() throws IOException {
-        List<Parrrt> parrrtList = Parser.lister();
-        return parrrtList;
+    @RequestMapping(value="admin/devs")
+    ModelAndView parrrtList(@RequestParam("q") String param) throws IOException {
+        ModelAndView mav = new ModelAndView("admin/home");
+        List<Parrrt> parrrtList = Parser.lister(param);
+        mav.addObject("parrrtList",parrrtList);
+        return mav;
     }
+
 }
