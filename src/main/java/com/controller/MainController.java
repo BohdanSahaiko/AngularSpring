@@ -26,6 +26,6 @@ public class MainController {
 
     @RequestMapping("/")
     public String helloPages(){
-        return "hello_page.html";
+        return "hello_page";
     }
 }
