@@ -21,7 +21,7 @@
         <h3 class="form-signin-heading">Сторінка Адміна</h3>
         <br/>
 
-        <input type="text" id="q" name="q"  th:placeholder="param.q"
+        <input type="text" id="q" name="q" placeholder="Введіть посилання на сайт з публікаціями"
                class="form-control" /> <br/>
 
         <div align="center" th:if="${param.error}">
@@ -29,21 +29,22 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Пошук" type="Submit" th:text="Пошук"></button>
     </form>
-    <div th:if="${not #lists.isEmpty(parrrtList) }" >
+    <div th:if="${not #lists.isEmpty(noEntityObjectList) }" >
+        <a th:href="@{/change}">Замінити\Зберегти</a>
         <table class="table-striped  table-hover table-bordered table" style="margin-right: 5%;"  >
             <thead style="background-color: #a8e3f1;">
             <tr>
                 <th>Тема</th>
                 <th>Автор</th>
                 <th>Сторінка</th>
-                <th>Рік Видання</th>
                 <th>№ Публікації</th>
-                <th>Ключові слова</th>
+                <th>Посилання</th>
+                <th>Рік</th>
                 <th>Ключові слова</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="publication : ${parrrtList}">
+            <tr th:each="publication : ${noEntityObjectList}">
                 <th th:text="${publication.tiitle}"></th>
                 <th th:text="${publication.author}"></th>
                 <th th:text="${publication.pages}"></th>

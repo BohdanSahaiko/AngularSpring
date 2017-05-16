@@ -1,15 +1,11 @@
 package com.controller;
 
 import com.Entity.Publication;
-import com.Entity.User;
-import com.parserLogic.Parrrt;
+import com.parserLogic.NoEntityObject;
 import com.parserLogic.Parser;
 import com.service.UserService;
 import com.service.implementationService.PublicationService;
-import org.jboss.jandex.Main;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -56,9 +52,14 @@ public class MainController {
     @RequestMapping(value="admin/devs")
     ModelAndView parrrtList(@RequestParam("q") String param) throws IOException {
         ModelAndView mav = new ModelAndView("admin/home");
-        List<Parrrt> parrrtList = Parser.lister(param);
-        mav.addObject("parrrtList",parrrtList);
+        List<NoEntityObject> noEntityObjectList = soneSrvice.allObject(param);
+        mav.addObject("noEntityObjectList", noEntityObjectList);
         return mav;
+    }
+    @RequestMapping(value="/change")
+        ModelAndView change() {
+        soneSrvice.changer();
+        return new ModelAndView("redirect:/");
     }
 
 }

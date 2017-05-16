@@ -1,9 +1,7 @@
 package com.parserLogic;
 
-/**
- * Created by bohdan on 14/05/17.
- */
-public class Parrrt {
+
+public class NoEntityObject {
     String tiitle;
     String author;
     String pages;
@@ -68,7 +66,7 @@ public class Parrrt {
         this.keyss = keyss;
     }
 
-    public Parrrt(String tiitle, String author, String pages, String them, String link, String year, String keyss) {
+    public NoEntityObject(String tiitle, String author, String pages, String them, String link, String year, String keyss) {
         this.tiitle = tiitle;
         this.author = author;
         this.pages = pages;
@@ -91,7 +89,7 @@ public class Parrrt {
                 '}';
     }
 
-    public Parrrt() {
+    public NoEntityObject() {
 
     }
 }

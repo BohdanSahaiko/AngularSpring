@@ -1,6 +1,5 @@
 package com.parserLogic;
 
-import com.itextpdf.text.pdf.PdfReader;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,8 +12,12 @@ import java.util.List;
 
 public class Logic {
     static Document doc;
-    static PdfReader reader;
+    static String s;
     static List<String> funkForName(String link) throws IOException {
+        String[] pp = link.split("/");
+        if(pp[5].equals("2015") && !pp[6].equals("25_1") && !pp[6].equals("25_2") && !pp[6].equals("25_3")){
+            s="o3";
+        }else s="o4";
         List<String> titles = new ArrayList<>();
         doc = Jsoup.connect(link).get();
         Elements titlesElements = doc.getElementsByAttributeValue("class", "o3");
@@ -26,7 +29,7 @@ public class Logic {
         });
         return titles;
     }
-    static List<String> funkForAuthors(String link) throws IOException {
+    static List<String> funkForAuthors() throws IOException {
         List<String> titles = new ArrayList<>();
         Elements authorsElements = doc.select(".o2");
         for (Element elements : authorsElements) {
@@ -37,9 +40,9 @@ public class Logic {
         }
         return titles;
     }
-    static List<String> funkForPages(String link) throws IOException {
+    static List<String> funkForPages() throws IOException {
         List<String> titles = new ArrayList<>();
-        Elements pagesElements = doc.getElementsByAttributeValue("class", "o4");
+        Elements pagesElements = doc.getElementsByAttributeValue("class", s);
         pagesElements.forEach(myElement -> {
             Element elements = myElement.child(0);
             String name = elements.text();

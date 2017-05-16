@@ -9,4 +9,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PubliactionRepository extends JpaRepository<Publication,Long> {
+    List<Publication> findByPoint(String point);
 }
